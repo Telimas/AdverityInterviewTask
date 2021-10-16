@@ -1,2 +1,2 @@
 # AdverityInterviewTask
-Adverity interview challenge for QA Aumation possition
+Adverity challenge for QA Automation possition
