@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>AdverityInterviewTask</groupId>
-            <artifactId>task_1_api</artifactId>
+            <artifactId>task_1</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
