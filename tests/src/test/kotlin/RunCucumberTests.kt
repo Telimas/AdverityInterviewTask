@@ -8,7 +8,7 @@ import org.junit.runner.RunWith
     plugin = ["pretty", "json:target/cucumber.json"],
     features = ["classpath:features"],
     glue = ["automation.stepDefinitions", "automation.cucumber"],
-    tags = [""],
+    tags = ["@Task1"],
     monochrome = true
 )
 class RunCucumberTests

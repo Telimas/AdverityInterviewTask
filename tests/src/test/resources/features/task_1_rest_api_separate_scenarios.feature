@@ -1,3 +1,4 @@
+@Task1
 Feature: Task 1 - REST API - separate scenarios
 
   @Precondition

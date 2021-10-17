@@ -3,7 +3,7 @@ package automation.api.jsonplaceholder
 import automation.models.Photo
 
 /**
- * Sealed class represents all possible /photos endpoint outcomes to provide more control over the inheritance.
+ * Sealed class represents all possible /photos endpoint outcomes to provide more control over each state.
  */
 sealed class PhotosOutcome {
     data class Success(val photos: List<Photo>) : PhotosOutcome()

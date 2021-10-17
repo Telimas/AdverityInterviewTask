@@ -1,3 +1,4 @@
+@Task1
 Feature: Task 1 - REST API - one scenario
 
   Scenario: Get and validate photos {saved_photos}
