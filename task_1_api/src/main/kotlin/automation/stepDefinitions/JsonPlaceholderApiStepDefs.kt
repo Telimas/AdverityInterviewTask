@@ -19,7 +19,6 @@ class JsonPlaceholderApiStepDefs(private val testContext: TestContext) {
 
     @Then("^number of photos is greater than \"(\\d+)\"$")
     fun numberOfPhotosIsGreaterThanNumber(n: Int) {
-        if (n < 0) throw RuntimeException("Unsupported number inz step definition. Expected [n > 0], but was found [$n]")
         Assert.assertTrue("Number of photos is less than [$n]", testContext.photos.size > n)
     }
 

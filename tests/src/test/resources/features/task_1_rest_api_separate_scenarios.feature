@@ -1,4 +1,4 @@
-Feature: Task 1 - REST API
+Feature: Task 1 - REST API - separate scenarios
 
   @Precondition
   Scenario: Pre-Condition: Get Photos {saved_photos}

@@ -7,7 +7,7 @@ import io.cucumber.java.Scenario
 import io.cucumber.java.Status
 
 class CucumberScenarioHooks(private val testContext: TestContext) {
-    @After("@Precondition", order = 100)
+    @After("@Precondition")
     fun handlePrecondition(scenario: Scenario) {
         if (scenario.status == Status.PASSED)
             TestRunContext.addPrecondition(

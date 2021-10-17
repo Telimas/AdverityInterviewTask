@@ -1,6 +1,6 @@
 package automation.api.jsonplaceholder
 
-import automation.models.Photos
+import automation.api.jsonplaceholder.responses.PhotosResponse
 import com.google.gson.Gson
 import io.restassured.RestAssured
 import io.restassured.specification.RequestSpecification
@@ -16,7 +16,7 @@ object JsonPlaceholderApi {
             return PhotosOutcome.Error(e, null)
         }
         return try {
-            val parsedResponse = Gson().fromJson(response.asString(), Photos::class.java)
+            val parsedResponse = Gson().fromJson(response.asString(), PhotosResponse::class.java)
             if (response.statusCode == 200)
                 PhotosOutcome.Success(parsedResponse)
             else
