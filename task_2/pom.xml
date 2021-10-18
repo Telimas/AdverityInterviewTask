@@ -5,24 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>AdverityInterviewTask</groupId>
         <artifactId>AdverityInterviewTask</artifactId>
+        <groupId>AdverityInterviewTask</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tests</artifactId>
+    <artifactId>task_2</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>AdverityInterviewTask</groupId>
-            <artifactId>task_1</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.13.1</version>
         </dependency>
         <dependency>
-            <groupId>AdverityInterviewTask</groupId>
-            <artifactId>task_2</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.5</version>
         </dependency>
     </dependencies>
-
 </project>
