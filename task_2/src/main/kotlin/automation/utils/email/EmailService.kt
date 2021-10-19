@@ -1,5 +1,6 @@
 package automation.utils.email
 
+import automation.utils.logger
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -27,6 +28,7 @@ object EmailService {
         props["mail.smtp.port"] = "587"
         props["mail.smtp.starttls.enable"] = "true"
         props["mail.smtp.auth"] = "true"
+        logger().info("Creating email sending session")
         session = Session.getDefaultInstance(props,
             object : Authenticator() {
                 override fun getPasswordAuthentication(): PasswordAuthentication {
@@ -38,16 +40,21 @@ object EmailService {
     fun sendEmailTo(to: String, subject: String, text: String, image: BufferedImage) {
         try {
             val message = MimeMessage(session).also {
-                it.setFrom(from)
+                it.setFrom(from).also { logger().info("Email [from] field is set to [$from]") }
                 it.addRecipient(Message.RecipientType.TO, InternetAddress(to))
-                it.subject = subject
+                    .also { logger().info("Email recipient field is set to [$to]") }
+                it.subject = subject.also { logger().info("Email subject is set to [$subject]") }
             }
 
             val multipart = MimeMultipart()
 
             val bodyPart = MimeBodyPart().also {
                 it.setContent(text, "text/html")
+            }.also {
+                logger().info("Email text is set to [$text]")
+                logger().info("Preparing body part for email")
             }
+
             val imagePart = prepareMessageBodyPartWithImage(image)
 
             multipart.addBodyPart(bodyPart)
@@ -55,8 +62,11 @@ object EmailService {
 
             message.setContent(multipart)
 
+            logger().info("Sending email")
             Transport.send(message)
+            logger().info("Email was successfully sent")
         } catch (e: MessagingException) {
+            logger().warn("Email wasn't send")
             e.printStackTrace()
             throw e
         }
@@ -77,6 +87,8 @@ object EmailService {
             dataHandler = DataHandler(bds)
             fileName = "image.png"
             setHeader("Content-ID", "<image>")
+        }.also {
+            logger().info("Preparing body part for image")
         }
     }
 }

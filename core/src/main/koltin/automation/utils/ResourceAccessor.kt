@@ -6,6 +6,7 @@ import java.util.*
 
 class ResourceAccessor {
     fun loadPropsFrom(filename: String): Properties {
+        logger().info("Loading properties from [$filename] file")
         return Properties().apply { load(getInputStreamFromResource(filename)) }
     }
 
