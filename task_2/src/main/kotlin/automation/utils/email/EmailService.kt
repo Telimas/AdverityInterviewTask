@@ -21,7 +21,6 @@ object EmailService {
         props["mail.smtp.port"] = "587"
         props["mail.smtp.starttls.enable"] = "true"
         props["mail.smtp.auth"] = "true"
-        logger().info("Creating email sending session")
         session = Session.getDefaultInstance(props,
             object : Authenticator() {
                 override fun getPasswordAuthentication(): PasswordAuthentication {
