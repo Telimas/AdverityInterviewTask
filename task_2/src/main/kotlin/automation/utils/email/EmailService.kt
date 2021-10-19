@@ -1,5 +1,6 @@
 package automation.utils.email
 
+import automation.utils.EnvironmentVariableDelegate
 import automation.utils.logger
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
@@ -14,11 +15,8 @@ import javax.mail.internet.MimeMultipart
 import javax.mail.util.ByteArrayDataSource
 
 object EmailService {
-    private val from: String = System.getenv("INTERVIEW_USER")
-        ?: throw RuntimeException("Couldn't get environment variable [INTERVIEW_USER]")
-
-    private val password: String = System.getenv("INTERVIEW_PASS")
-        ?: throw RuntimeException("Couldn't get environment variable [INTERVIEW_PASS]")
+    private val from: String by EnvironmentVariableDelegate("INTERVIEW_USER")
+    private val password: String by EnvironmentVariableDelegate("INTERVIEW_PASS")
 
     private val session: Session
 

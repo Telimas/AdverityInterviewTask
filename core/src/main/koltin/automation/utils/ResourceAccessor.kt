@@ -17,6 +17,5 @@ class ResourceAccessor {
 }
 
 fun Properties.getNonNullProperty(propertyName: String): String {
-    return this.getProperty(propertyName)
-        ?: throw RuntimeException("[$propertyName] is not specified in the properties file")
+    return this.getProperty(propertyName) ?: throw RuntimeException("[$propertyName] is not specified")
 }
