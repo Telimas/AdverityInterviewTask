@@ -1,8 +1,8 @@
 package automation.utils.email
 
 import automation.configs.RecipientConfig
+import automation.delegates.EnvironmentVariableDelegate
 import automation.models.messsage.BaseMessageWithImage
-import automation.utils.EnvironmentVariableDelegate
 import automation.utils.logger
 import java.util.*
 import javax.mail.*

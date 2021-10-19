@@ -1,4 +1,4 @@
-package automation.utils
+package automation.delegates
 
 import kotlin.reflect.KProperty
 
