@@ -3,7 +3,7 @@ package automation.configs
 import automation.utils.ResourceAccessor
 import automation.utils.getNonNullProperty
 
-object UrlCofig {
+object UrlConfig {
     val meteoMdUrl: String
     val meteorologyUrl: String
 

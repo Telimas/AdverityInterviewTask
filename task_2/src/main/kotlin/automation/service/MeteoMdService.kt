@@ -1,12 +1,12 @@
 package automation.service
 
-import automation.configs.UrlCofig
+import automation.configs.UrlConfig
 import io.restassured.RestAssured
 import io.restassured.specification.RequestSpecification
 
 object MeteoMdService {
     private val request: RequestSpecification
-        get() = RestAssured.given().baseUri(UrlCofig.meteorologyUrl)
+        get() = RestAssured.given().baseUri(UrlConfig.meteorologyUrl)
 
     fun getHtmlString(): String {
         val response = try {

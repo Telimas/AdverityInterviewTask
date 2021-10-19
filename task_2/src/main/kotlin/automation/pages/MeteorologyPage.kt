@@ -1,6 +1,6 @@
 package automation.pages
 
-import automation.configs.UrlCofig
+import automation.configs.UrlConfig
 import automation.enums.WarningCode
 import org.jsoup.Jsoup
 import java.awt.image.BufferedImage
@@ -13,7 +13,7 @@ class MeteorologyPage(sourceHtml: String) : AbstractPage(sourceHtml) {
 
     private fun extractImage(): BufferedImage {
         val src = Jsoup.parse(sourceHtml).select("img[src*=karta][src$='.png']").first().attr("src")
-        return ImageIO.read(URL("${UrlCofig.meteoMdUrl}${src.removePrefix("..")}"))
+        return ImageIO.read(URL("${UrlConfig.meteoMdUrl}${src.removePrefix("..")}"))
     }
 
     private fun extractWarningCode(): WarningCode {
