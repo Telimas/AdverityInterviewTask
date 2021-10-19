@@ -1,19 +1,13 @@
 package automation.utils.email
 
 import automation.configs.RecipientConfig
+import automation.models.messsage.BaseMessageWithImage
 import automation.utils.EnvironmentVariableDelegate
 import automation.utils.logger
-import java.awt.image.BufferedImage
-import java.io.ByteArrayOutputStream
 import java.util.*
-import javax.activation.DataHandler
-import javax.imageio.ImageIO
 import javax.mail.*
 import javax.mail.internet.InternetAddress
-import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMessage
-import javax.mail.internet.MimeMultipart
-import javax.mail.util.ByteArrayDataSource
 
 object EmailService {
     private val from: String by EnvironmentVariableDelegate("INTERVIEW_USER")
@@ -36,33 +30,21 @@ object EmailService {
             })
     }
 
-    fun sendEmailTo(subject: String, text: String, image: BufferedImage) {
+    fun sendEmailTo(subject: String, messageWithImage: BaseMessageWithImage) {
         val to = RecipientConfig.to
-            ?: throw RuntimeException("Couldn't get value from [to] system property. Please add [-Dto='...'] in VM arguments")
+            ?: throw RuntimeException("Couldn't get value from [to] system property. Please add string [-Dto='...'] in VM arguments")
 
         try {
             val message = MimeMessage(session).also {
-                it.setFrom(from).also { logger().info("Email [from] field is set to [$from]") }
+                it.setFrom(from)
+                    .also { logger().info("Email [from] field is set to [$from]") }
                 it.addRecipient(Message.RecipientType.TO, InternetAddress(to))
                     .also { logger().info("Email recipient field is set to [$to]") }
-                it.subject = subject.also { logger().info("Email subject is set to [$subject]") }
+                it.subject = subject
+                    .also { logger().info("Email subject is set to [$subject]") }
             }
 
-            val multipart = MimeMultipart()
-
-            val bodyPart = MimeBodyPart().also {
-                it.setContent(text, "text/html")
-            }.also {
-                logger().info("Email text is set to [$text]")
-                logger().info("Preparing body part for email")
-            }
-
-            val imagePart = prepareMessageBodyPartWithImage(image)
-
-            multipart.addBodyPart(bodyPart)
-            multipart.addBodyPart(imagePart)
-
-            message.setContent(multipart)
+            message.setContent(messageWithImage.multipart)
 
             logger().info("Sending email")
             Transport.send(message)
@@ -71,26 +53,6 @@ object EmailService {
             logger().warn("Email wasn't send")
             e.printStackTrace()
             throw e
-        }
-    }
-
-    private fun prepareMessageBodyPartWithImage(image: BufferedImage): MimeBodyPart {
-        fun imageToByteArray(originalImage: BufferedImage): ByteArray {
-            ByteArrayOutputStream().use { baos ->
-                ImageIO.write(originalImage, "png", baos)
-                baos.flush()
-                return baos.toByteArray()
-            }
-        }
-
-        val imageBytes = imageToByteArray(image)
-        val bds = ByteArrayDataSource(imageBytes, "image/png")
-        return MimeBodyPart().apply {
-            dataHandler = DataHandler(bds)
-            fileName = "image.png"
-            setHeader("Content-ID", "<image>")
-        }.also {
-            logger().info("Preparing body part for image")
         }
     }
 }
