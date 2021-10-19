@@ -1,5 +1,6 @@
 package automation.utils.email
 
+import automation.configs.RecipientConfig
 import automation.utils.EnvironmentVariableDelegate
 import automation.utils.logger
 import java.awt.image.BufferedImage
@@ -35,7 +36,10 @@ object EmailService {
             })
     }
 
-    fun sendEmailTo(to: String, subject: String, text: String, image: BufferedImage) {
+    fun sendEmailTo(subject: String, text: String, image: BufferedImage) {
+        val to = RecipientConfig.to
+            ?: throw RuntimeException("Couldn't get value from [to] system property. Please add [-Dto='...'] in VM arguments")
+
         try {
             val message = MimeMessage(session).also {
                 it.setFrom(from).also { logger().info("Email [from] field is set to [$from]") }
