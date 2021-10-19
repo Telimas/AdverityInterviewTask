@@ -32,7 +32,7 @@
                 <version>3.3.0</version>
                 <configuration>
                     <descriptors>
-                        <descriptor>assembly.xml</descriptor>
+                        <descriptor>src/main/resources/assembly.xml</descriptor>
                     </descriptors>
                     <archive>
                         <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
