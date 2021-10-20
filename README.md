@@ -15,7 +15,7 @@ This project was created as a part of technical interview.
    ```
 2. Run command from project's root directory
    ```sh
-   mvn install -DskipTests
+   mvn package -DskipTests
    ```
 3. JAR will be created in `tests\target` directory
 
