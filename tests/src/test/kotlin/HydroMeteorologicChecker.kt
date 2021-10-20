@@ -1,6 +1,6 @@
 import automation.configs.UrlConfig
 import automation.enums.WarningCode
-import automation.models.messsage.BaseMessageWithImage
+import automation.models.messsage.MultipartMessage
 import automation.pages.MeteorologyPage
 import automation.service.MeteoMdService
 import automation.utils.email.EmailService
@@ -15,13 +15,14 @@ class HydroMeteorologicChecker {
         when (meteorologyPage.warningCode) {
             WarningCode.GREEN -> Assert.assertTrue(true)
             WarningCode.YELLOW, WarningCode.ORANGE, WarningCode.RED -> {
-                val message = BaseMessageWithImage(
-                    text = "Check possible risks.\n More info: ${UrlConfig.meteorologyUrl}",
-                    image = meteorologyPage.image
-                )
-                EmailService.sendEmailTo(
+                val multipartMessage = MultipartMessage.Builder()
+                    .withText("Check possible risks.\n More info: ${UrlConfig.meteorologyUrl}")
+                    .withImage(meteorologyPage.image)
+                    .build()
+
+                EmailService.sendEmail(
                     subject = "Warning! Current meteorology warning code is [${meteorologyPage.warningCode.name}]",
-                    messageWithImage = message
+                    multipartMessage = multipartMessage
                 )
                 Assert.fail("WARNING. CURRENT METEOROLOGY WARNING CODE IS [${meteorologyPage.warningCode.name}]")
             }

@@ -30,10 +30,7 @@ object EmailService {
             })
     }
 
-    fun sendEmailTo(subject: String, messageWithImage: BaseMessageWithImage) {
-        val to = RecipientConfig.to
-            ?: throw RuntimeException("Couldn't get value from [to] system property. Please add string [-Dto='...'] in VM arguments")
-
+    fun sendEmail(subject: String, multipartMessage: MultipartMessage) {
         try {
             val message = MimeMessage(session).also {
                 it.setFrom(from)
@@ -44,7 +41,7 @@ object EmailService {
                     .also { logger().info("Email subject is set to [$subject]") }
             }
 
-            message.setContent(messageWithImage.multipart)
+            message.setContent(multipartMessage.multipart)
 
             logger().info("Sending email")
             Transport.send(message)
