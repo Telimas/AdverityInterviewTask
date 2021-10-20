@@ -30,7 +30,7 @@ There are two things which should be configured before running test:
 
 * Using Java
    ```sh
-   java -Dtask2=true -Duser={sender_email_user} -Dpass={sender_email_password} -Dto={destination_email} -jar tests-1.0-SNAPSHOT-jar-with-dependencies.jar
+   java -Dtask2=true -Duser={sender_email_user} -Dpass={sender_email_password} -Dto={destination_email} -jar tests\target\tests-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
     * _For more info on how to get JAR with dependencies, please refer to
       the [Building JAR Guide](https://github.com/Telimas/AdverityInterviewTask#building-jar)_
