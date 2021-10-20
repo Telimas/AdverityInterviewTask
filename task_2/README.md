@@ -24,7 +24,7 @@ There are two things which should be configured before running test:
 * This data will be attached to the email after all work on this project is done
   #### _In case you miss email and password data, please contact me via email or messenger(s)._
 
-3. Come up with an email address to whom you want to send meteorology notification(s)
+2. Come up with an email address to whom you want to send meteorology notification(s)
 
 ### Run Tests
 
