@@ -27,7 +27,7 @@ There are two things which should be configured before running test:
    java -Dtask2=true -Dto={destination_email} -jar tests-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
     * _For more info on how to get JAR with dependencies, please refer to
-      the [README](https://github.com/Telimas/AdverityInterviewTask#readme)_
+      the [Build JAR Guide](https://github.com/Telimas/AdverityInterviewTask#building-jar)_
 * Using Maven
    ```sh
    mvn test -Dtest=HydroMeteorologicChecker -Dto={destination_email}

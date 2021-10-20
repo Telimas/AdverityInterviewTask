@@ -19,7 +19,7 @@ manipulations.
    java -jar tests-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
     * _For more info on how to get JAR with dependencies, please refer to
-      the [README](https://github.com/Telimas/AdverityInterviewTask#readme)_
+      the [Build JAR Guide](https://github.com/Telimas/AdverityInterviewTask#building-jar)_
 * Using Maven
    ```sh
    mvn test -Dtest=RunCucumberTests
@@ -45,4 +45,4 @@ Note that after command run you'll be automatically redirected to the generated 
 
 ### Report Example:
 
-![allure-example](https://user-images.githubusercontent.com/32519338/138086745-ea5f9b49-cf40-4e55-9573-051efce7b14a.png)
+![allure-example](https://user-images.githubusercontent.com/32519338/138099609-9c8e6844-d0c1-4173-ad2a-de13537422a1.png)
