@@ -1,8 +1,8 @@
 package automation.utils.email
 
-import automation.configs.RecipientConfig
-import automation.delegates.EnvironmentVariableDelegate
-import automation.models.messsage.BaseMessageWithImage
+import automation.configs.EmailReceiverConfig
+import automation.configs.EmailSenderConfig
+import automation.models.messsage.MultipartMessage
 import automation.utils.logger
 import java.util.*
 import javax.mail.*
@@ -10,8 +10,9 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 object EmailService {
-    private val from: String by EnvironmentVariableDelegate("INTERVIEW_USER")
-    private val password: String by EnvironmentVariableDelegate("INTERVIEW_PASS")
+    private val from: String = EmailSenderConfig.user
+    private val password: String = EmailSenderConfig.pass
+    private val to: String = EmailReceiverConfig.to
 
     private val session: Session
 
@@ -49,9 +50,8 @@ object EmailService {
             Transport.send(message)
             logger().info("Email was successfully sent")
         } catch (e: MessagingException) {
-            logger().warn("Email wasn't send")
-            e.printStackTrace()
-            throw e
+            logger().error("Email wasn't send")
+            throw RuntimeException(e)
         }
     }
 }
