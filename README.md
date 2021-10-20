@@ -5,6 +5,7 @@ This project was created as a part of technical interview.
 ### Built With
 
 * [Kotlin](https://kotlinlang.org/)
+* [Maven](https://maven.apache.org/)
 * [JUnit](https://junit.org/junit5/)
 
 ### Building JAR
