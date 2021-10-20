@@ -16,7 +16,7 @@ manipulations.
 
 * Using Java
    ```sh
-   java -jar tests-1.0-SNAPSHOT-jar-with-dependencies.jar
+   java -jar tests\target\tests-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
     * _For more info on how to get JAR with dependencies, please refer to
       the [Building JAR Guide](https://github.com/Telimas/AdverityInterviewTask#building-jar)_
